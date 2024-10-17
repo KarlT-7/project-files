@@ -22,7 +22,7 @@ services:
       - 9000:9000
     volumes:
       - hadoop_namenode:/hadoop/dfs/name
-      - ./nbs:/home/nbs
+      - ./data:/home/data
     environment:
       - CLUSTER_NAME=test
     env_file:
@@ -166,7 +166,6 @@ services:
     ports:
         - "8888:8888"
     volumes:
-        - ./nbs:/home/jovyan/work/nbs
+        - ./data:/home/jovyan/work/data
         - ./events:/tmp/spark-events
-    command: bash -c "pip install gdown faiss-cpu && gdown -O /home/jovyan/work/nbs/un-general-debates.csv 1p2FqqFP-ZbmhFdOmvZoQzdDyF5D0MRDn; start-notebook.sh --ip=0.0.0.0 --allow-root --NotebookApp.token=''" 
-
+    command: "start-notebook.sh --ip=0.0.0.0 --allow-root --NotebookApp.token=''" 
